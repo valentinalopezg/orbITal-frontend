@@ -1,1 +1,62 @@
-<p>login works!</p>
+<!-- 
+  Login — Pantalla de inicio de sesión
+-->
+
+<div class="login-wrap">
+  <!-- Estrellas de fondo -->
+  <div class="stars"></div>
+  <div class="glow-orb" style="width:400px;height:400px;background:#0044ff;top:-100px;left:-100px;"></div>
+  <div class="glow-orb" style="width:300px;height:300px;background:#00c9ff;bottom:-80px;right:-80px;"></div>
+
+  <div class="login-card">
+
+    <!-- Logo -->
+    <div class="login-logo">Orb<span>IT</span>al</div>
+    <div class="login-sub">Imperio de Freezer · Control Galáctico</div>
+
+    <!-- Alerta de error -->
+    <div class="alert alert-error" *ngIf="errorMessage">
+      ⚠ {{ errorMessage }}
+    </div>
+
+    <!-- Campo email -->
+    <div class="form-group">
+      <label class="form-label">ID de Comandante</label>
+      <input
+        class="form-input"
+        type="email"
+        placeholder="cmd@freezer.empire"
+        [(ngModel)]="email"
+        (keyup.enter)="login()"
+      >
+    </div>
+
+    <!-- Campo contraseña -->
+    <div class="form-group">
+      <div class="meta-row">
+        <label class="form-label" style="margin:0">Contraseña</label>
+      </div>
+      <input
+        class="form-input"
+        type="password"
+        placeholder="••••••••"
+        [(ngModel)]="password"
+        (keyup.enter)="login()"
+      >
+    </div>
+
+    <!-- Checkbox recordar sesión -->
+    <div class="checkbox-row">
+      <input type="checkbox" [(ngModel)]="recordarSesion" id="recordar">
+      <label class="checkbox-label" for="recordar">Mantener sesión activa</label>
+    </div>
+
+    <!-- Botón acceder -->
+    <button class="btn btn-primary btn-full" (click)="login()" [disabled]="cargando">
+      {{ cargando ? 'Verificando...' : 'Acceder al Sistema' }}
+    </button>
+
+    <div class="login-divider">— Solo personal autorizado del Imperio —</div>
+
+  </div>
+</div>
