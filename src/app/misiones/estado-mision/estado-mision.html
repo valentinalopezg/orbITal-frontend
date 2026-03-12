@@ -1,0 +1,104 @@
+<div class="screen active" id="s-estado-mision">
+  <div class="page-header" style="display:flex; justify-content:space-between; align-items:center;">
+    <div style="display:flex; align-items:center; gap:15px;">
+      <button class="btn btn-sm btn-secondary" routerLink="/monitoreo">← MONITOREO</button>
+      <div>
+        <h1 style="margin:0">Misión M-2024-047</h1>
+        <p style="margin:0">Planeta Namek · Iniciada 2026-02-10</p>
+      </div>
+    </div>
+    <span class="badge badge-warn">EN PROGRESO</span>
+  </div>
+
+  <div class="grid-4" style="margin-bottom:20px">
+    <div class="card">
+      <div style="font-size:10px; color:var(--text3); text-transform:uppercase; margin-bottom:10px">Progreso</div>
+      <div style="font-size:24px; font-weight:bold; color:var(--white); margin-bottom:10px">68%</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:68%"></div></div>
+    </div>
+    <div class="card">
+      <div style="font-size:10px; color:var(--text3); text-transform:uppercase; margin-bottom:10px">Días Restantes</div>
+      <div style="font-size:24px; font-weight:bold; color:var(--warn); margin-bottom:5px">18</div>
+      <div style="font-size:10px; color:var(--text3)">Límite: 2026-04-15</div>
+    </div>
+    <div class="card">
+      <div style="font-size:10px; color:var(--text3); text-transform:uppercase; margin-bottom:10px">Zonas Completadas</div>
+      <div style="font-size:24px; font-weight:bold; color:var(--accent); margin-bottom:5px">5/7</div>
+      <div style="font-size:10px; color:var(--text3)">Continentes</div>
+    </div>
+    <div class="card">
+      <div style="font-size:10px; color:var(--text3); text-transform:uppercase; margin-bottom:10px">Nivel Amenaza</div>
+      <div style="font-size:24px; font-weight:bold; color:var(--danger); margin-bottom:5px">Alto</div>
+      <div style="font-size:10px; color:var(--text3)">Guerreros poderosos</div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="section-title" style="margin-bottom:20px">Línea de Tiempo</div>
+      <div class="timeline">
+        <div class="timeline-item active">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div style="font-weight:bold; color:var(--white)">Misión asignada</div>
+            <div style="font-size:11px; color:var(--text3)">2026-02-10 · Escuadrón Ginyu desplegado</div>
+          </div>
+        </div>
+        <div class="timeline-item active">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div style="font-weight:bold; color:var(--white)">Llegada al planeta</div>
+            <div style="font-size:11px; color:var(--text3)">2026-02-14 · En órbita</div>
+          </div>
+        </div>
+        <div class="timeline-item active">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div style="font-weight:bold; color:var(--white)">Inicio de operaciones</div>
+            <div style="font-size:11px; color:var(--text3)">2026-02-15 · Zonas norte y sur OK</div>
+          </div>
+        </div>
+        <div class="timeline-item active">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div style="font-weight:bold; color:var(--white)">Fase crítica — Zona Central</div>
+            <div style="font-size:11px; color:var(--text3)">En curso · Resistencia detectada</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div style="font-weight:bold; color:var(--text3)">Verificación y conquista</div>
+            <div style="font-size:11px; color:var(--text3)">Pendiente</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:20px">
+      <div class="card">
+        <div class="section-title" style="margin-bottom:15px">Equipo Asignado</div>
+        <div style="display:flex; align-items:center; gap:15px">
+          <div class="avatar" style="background:var(--accent); color:var(--white)">GY</div>
+          <div style="flex:1">
+            <div style="font-weight:bold; color:var(--white)">Escuadrón Ginyu</div>
+            <div style="font-size:11px; color:var(--text3)">5 integrantes · Poder: 200,000</div>
+          </div>
+          <span class="badge badge-warn">EN MISIÓN</span>
+        </div>
+        <div style="margin-top:15px; padding:10px; background:rgba(255,255,255,0.03); border-radius:5px; font-size:11px; font-style:italic; color:var(--text2)">
+          "Zona central con resistencia. Poder local estimado 90,000. Solicitando refuerzos."
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-title" style="margin-bottom:15px">Acciones</div>
+        <div style="display:flex; flex-direction:column; gap:10px">
+          <button class="btn btn-primary" style="background:var(--success); border-color:var(--success)">✓ MARCAR COMO COMPLETADA</button>
+          <button class="btn btn-secondary">📡 ENVIAR REFUERZOS</button>
+          <button class="btn btn-secondary" style="color:var(--danger); border-color:var(--danger)">✕ CANCELAR MISIÓN</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

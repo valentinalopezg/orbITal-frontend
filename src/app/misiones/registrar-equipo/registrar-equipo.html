@@ -1,0 +1,29 @@
+<div class="screen active" id="s-registrar-equipo">
+  <div class="page-header"><h1>Registrar Equipo de Limpieza</h1><p>Añadir nuevo equipo al registro de fuerzas del Imperio</p></div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="section-title" style="margin-bottom:16px">Información del Equipo</div>
+      <div class="form-group"><label class="form-label">Nombre del equipo *</label><input class="form-input focus" value="Escuadrón Ginyu"></div>
+      <div class="form-row"><div class="form-group"><label class="form-label">Tipo de unidad *</label><select class="form-select"><option>Fuerza Élite</option><option selected>Escuadrón Especial</option><option>Soldados Estándar</option><option>Mercenarios</option></select></div><div class="form-group"><label class="form-label">Nivel de poder total</label><input class="form-input" value="200,000"></div></div>
+      <div class="form-group"><label class="form-label">Comandante del equipo</label><input class="form-input" value="Capitán Ginyu"></div>
+      <div class="form-row"><div class="form-group"><label class="form-label">Nº de integrantes</label><input class="form-input" value="5"></div><div class="form-group"><label class="form-label">Estado</label><select class="form-select"><option>Disponible</option><option>En misión</option></select></div></div>
+    </div>
+    <div class="card">
+      <div class="section-title" style="margin-bottom:16px">Integrantes del Equipo</div>
+      <table class="table" style="margin-bottom:12px">
+        <thead><tr><th>Nombre</th><th>Poder</th><th>Raza</th></tr></thead>
+        <tbody>
+          @for (guerrero of integrantes; track guerrero.nombre) {
+            <tr>
+              <td>{{ guerrero.nombre }}</td>
+              <td style="color:var(--accent)">{{ guerrero.poder }}</td>
+              <td><span class="badge {{ guerrero.claseRaza }}">{{ guerrero.raza }}</span></td>
+            </tr>
+          }
+        </tbody>
+      </table>
+      <button class="btn btn-secondary btn-sm">+ Añadir integrante</button>
+      <div style="display:flex;gap:10px;margin-top:16px"><button class="btn btn-primary">Registrar Equipo</button><button class="btn btn-secondary">Cancelar</button></div>
+    </div>
+  </div>
+</div>
