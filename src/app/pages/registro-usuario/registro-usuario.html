@@ -1,27 +1,37 @@
-<!-- 
-  Registro de Usuario — Pantalla de creación de nuevos usuarios
+<!--
+  Registro de Usuario — HU0
+  Como Administrador del Imperio quiero registrar nuevos usuarios
+  para otorgarles acceso al sistema de control galáctico
   Solo accesible para administradores del Imperio
 -->
 
+<!-- Layout principal: sidebar izquierdo + contenido derecho -->
 <div class="app-layout">
   <app-sidebar></app-sidebar>
+
+  <!-- Área de contenido principal -->
   <div class="main-content">
 
+    <!-- Encabezado de la pantalla con aviso de campos obligatorios -->
     <div class="page-header">
       <h1>Registrar Nuevo Usuario</h1>
       <p>Solo accesible para administradores del Imperio · Los campos marcados con * son obligatorios</p>
     </div>
 
+    <!-- Formulario limitado a 700px para mejor legibilidad -->
     <div class="card" style="max-width:700px;">
 
+      <!-- Alerta de éxito: visible tras registro exitoso via *ngIf -->
       <div class="alert alert-success" *ngIf="exitoso">
         ✓ Usuario registrado exitosamente en el sistema galáctico.
       </div>
 
+      <!-- Alerta de error: visible si hay validación fallida o contraseñas no coinciden -->
       <div class="alert alert-error" *ngIf="errorMessage">
         ⚠ {{ errorMessage }}
       </div>
 
+      <!-- Nombre completo e ID de acceso (email) en fila -->
       <div class="form-row">
         <div class="form-group">
           <label class="form-label">Nombre completo *</label>
@@ -33,6 +43,7 @@
         </div>
       </div>
 
+      <!-- Rol en el Imperio y nivel de poder en fila -->
       <div class="form-row">
         <div class="form-group">
           <label class="form-label">Rol en el Imperio *</label>
@@ -49,6 +60,8 @@
         </div>
       </div>
 
+      <!-- Contraseña inicial y confirmación en fila -->
+      <!-- Ambos campos se validan contra cada uno en el método registrar() -->
       <div class="form-row">
         <div class="form-group">
           <label class="form-label">Contraseña inicial *</label>
@@ -60,16 +73,20 @@
         </div>
       </div>
 
+      <!-- Permisos del sistema: informativos, asignados automáticamente según el rol -->
       <div class="form-group">
         <label class="form-label">Permisos del sistema</label>
         <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;">
+          <!-- Permisos de lectura (azul) -->
           <span class="badge badge-info">Ver Planetas</span>
           <span class="badge badge-info">Ver Misiones</span>
+          <!-- Permisos de escritura (violeta) -->
           <span class="badge badge-purple">Registrar Planetas</span>
           <span class="badge badge-purple">Asignar Misiones</span>
         </div>
       </div>
 
+      <!-- Botones: registrar (se deshabilita mientras carga) y cancelar -->
       <div style="display:flex;gap:12px;margin-top:8px;">
         <button class="btn btn-primary" (click)="registrar()" [disabled]="cargando">
           {{ cargando ? 'Registrando...' : 'Registrar Usuario' }}
@@ -77,6 +94,6 @@
         <button class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
       </div>
 
-    </div>
-  </div>
-</div>
+    </div><!-- /card -->
+  </div><!-- /main-content -->
+</div><!-- /app-layout -->

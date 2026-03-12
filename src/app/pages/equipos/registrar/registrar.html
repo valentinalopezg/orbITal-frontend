@@ -1,14 +1,24 @@
+<!-- ══════════════════════════════════════════════════════
+     Registrar Equipo — HU3
+     Como Comandante de Flota quiero registrar nuevos equipos
+     de combate para asignarlos a misiones planetarias
+     ══════════════════════════════════════════════════════ -->
+
+<!-- Layout principal: sidebar izquierdo + contenido derecho -->
 <div class="app-layout">
   <app-sidebar></app-sidebar>
-  <div class="main-content">
 
+  <!-- Área de contenido principal (todo lo que no es sidebar) -->
+  <div class="main-content">
     <div class="page-wrap">
+
+      <!-- Estructura de dos columnas: formulario | lista de equipos -->
       <div class="two-col">
 
         <!-- ══ COLUMNA IZQUIERDA: FORMULARIO ══ -->
         <div>
 
-          <!-- Datos del equipo -->
+          <!-- ── Tarjeta: Datos generales del equipo ── -->
           <div class="form-card">
             <div class="form-card-header">
               <span class="header-icon">⚔️</span>
@@ -16,11 +26,13 @@
             </div>
             <div class="form-body">
 
+              <!-- Nombre del equipo (requerido) -->
               <div class="form-group">
                 <label class="form-label">Nombre del Equipo *</label>
                 <input class="form-input" type="text" placeholder="Ej: Escuadrón Vegeta Alpha" [(ngModel)]="nuevoEquipo.nombre">
               </div>
 
+              <!-- Tipo de unidad y rango mínimo en fila -->
               <div class="form-row">
                 <div class="form-group">
                   <label class="form-label">Tipo de Unidad *</label>
@@ -44,9 +56,11 @@
                 </div>
               </div>
 
+              <!-- Poder de combate total y capacidad máxima de misiones en fila -->
               <div class="form-row">
                 <div class="form-group">
                   <label class="form-label">Poder de Combate Total</label>
+                  <!-- Campo numérico con unidad "pts" al lado -->
                   <div class="power-input-wrap">
                     <input class="form-input" type="number" placeholder="0" [(ngModel)]="nuevoEquipo.poderTotal">
                     <span class="power-unit">pts</span>
@@ -59,6 +73,7 @@
                 </div>
               </div>
 
+              <!-- Checkboxes de especialización (selección múltiple) -->
               <div class="form-group">
                 <label class="form-label">Especialización</label>
                 <div class="checkbox-group">
@@ -77,6 +92,7 @@
                 </div>
               </div>
 
+              <!-- Campo libre para notas adicionales -->
               <div class="form-group">
                 <label class="form-label">Observaciones</label>
                 <textarea class="form-textarea" placeholder="Notas adicionales sobre el equipo..." [(ngModel)]="nuevoEquipo.observaciones"></textarea>
@@ -85,11 +101,12 @@
             </div>
           </div><!-- /form-card datos -->
 
-          <!-- Miembros del equipo -->
+          <!-- ── Tarjeta: Gestión de miembros del equipo ── -->
           <div class="form-card mt-20">
             <div class="form-card-header">
               <span class="header-icon">👥</span>
               <h3>Miembros del Equipo</h3>
+              <!-- Contador reactivo de miembros actuales -->
               <span class="member-count">{{ miembrosActuales.length }} miembros</span>
             </div>
 
@@ -105,29 +122,38 @@
                   </tr>
                 </thead>
                 <tbody>
+                  <!-- Itera sobre los miembros agregados al equipo actual -->
                   <tr *ngFor="let m of miembrosActuales; let i = index">
                     <td class="member-name">{{ m.nombre }}</td>
                     <td>
+                      <!-- Badge de raza con clase dinámica según tipo -->
                       <span class="badge badge-sm" [ngClass]="badgeTipo(m.raza.toLowerCase())">{{ m.raza }}</span>
                     </td>
                     <td>
+                      <!-- Poder formateado en k (ej: 1200 → 1k) -->
                       <span class="mono warn">{{ formatPoder(m.poder) }}</span>
                     </td>
                     <td>
+                      <!-- Badge de estado con texto según valor del campo -->
                       <span class="badge badge-sm" [ngClass]="badgeEstadoMiembro(m.estado)">
                         {{ m.estado === 'activo' ? '● Activo' : m.estado === 'en_mision' ? '● Misión' : '◌ Reposo' }}
                       </span>
                     </td>
                     <td>
+                      <!-- Botón para eliminar miembro por índice -->
                       <button class="btn-remove" (click)="eliminarMiembro(i)">✕</button>
                     </td>
                   </tr>
+
+                  <!-- Estado vacío: se muestra cuando no hay miembros -->
                   <tr *ngIf="miembrosActuales.length === 0">
                     <td colspan="5" class="empty-members">Sin miembros aún. Añade combatientes abajo.</td>
                   </tr>
                 </tbody>
               </table>
 
+              <!-- Fila para agregar nuevo miembro (nombre + raza + poder + botón) -->
+              <!-- También responde a Enter en el campo de nombre -->
               <div class="add-member-row">
                 <input class="form-input" type="text" placeholder="Nombre del combatiente..." [(ngModel)]="nuevoMiembro.nombre" (keyup.enter)="agregarMiembro()">
                 <select class="form-select" [(ngModel)]="nuevoMiembro.raza">
@@ -142,6 +168,7 @@
               </div>
             </div>
 
+            <!-- Botones de acción: limpiar formulario o confirmar registro -->
             <div class="form-footer">
               <button class="btn btn-ghost" (click)="resetForm()">↺ Limpiar</button>
               <button class="btn btn-primary" (click)="registrarEquipo()">✓ Registrar Equipo</button>
@@ -151,9 +178,10 @@
 
         </div><!-- /col izq -->
 
-        <!-- ══ COLUMNA DERECHA: EQUIPOS REGISTRADOS ══ -->
+        <!-- ══ COLUMNA DERECHA: LISTA DE EQUIPOS REGISTRADOS ══ -->
         <div>
 
+          <!-- Encabezado con conteo total de equipos -->
           <div class="list-header">
             <div>
               <div class="list-title">Equipos Registrados</div>
@@ -161,6 +189,7 @@
             </div>
           </div>
 
+          <!-- Barra de búsqueda y filtro por tipo de unidad -->
           <div class="toolbar">
             <div class="search-wrap">
               <span class="search-icon">🔍</span>
@@ -175,19 +204,23 @@
             </select>
           </div>
 
+          <!-- Lista de tarjetas de equipos filtrados -->
           <div class="equipos-list">
             <div class="equipo-card" *ngFor="let e of equiposFiltrados">
               <div class="equipo-avatar">{{ e.emoji }}</div>
               <div class="equipo-info">
                 <div class="equipo-name">{{ e.nombre }}</div>
                 <div class="equipo-meta">
+                  <!-- Badge de tipo + rango del equipo -->
                   <span class="badge badge-sm" [ngClass]="badgeTipo(e.tipo)">{{ labelTipo(e.tipo) }}</span>
                   &nbsp;·&nbsp; Rango {{ e.rango }}
                 </div>
+                <!-- Etiquetas de especialización (solo si tiene alguna) -->
                 <div class="equipo-specs" *ngIf="e.especializaciones.length">
                   <span *ngFor="let s of e.especializaciones" class="spec-tag">{{ s }}</span>
                 </div>
               </div>
+              <!-- Columna derecha de la tarjeta: poder, miembros y estado -->
               <div class="equipo-stats">
                 <div class="equipo-power">{{ formatPoder(e.poderTotal) }}</div>
                 <div class="equipo-members">{{ e.miembros.length || '—' }} miembros</div>
@@ -196,13 +229,18 @@
                 </span>
               </div>
             </div>
+
+            <!-- Estado vacío cuando ningún equipo coincide con el filtro -->
             <div class="empty-equipos" *ngIf="equiposFiltrados.length === 0">
               ⚔️ No se encontraron equipos
             </div>
           </div>
 
+          <!-- Resumen visual de disponibilidad con barras de progreso -->
           <div class="disponibilidad-card">
             <div class="disp-title">Resumen de Disponibilidad</div>
+
+            <!-- Barra: equipos disponibles (activos) -->
             <div class="disp-row">
               <div class="disp-label">Disponibles</div>
               <div class="disp-value success">{{ disponibles }}</div>
@@ -210,6 +248,8 @@
                 <div class="disp-fill success-fill" [style.width.%]="(disponibles / equipos.length) * 100"></div>
               </div>
             </div>
+
+            <!-- Barra: equipos actualmente en misión -->
             <div class="disp-row">
               <div class="disp-label">En Misión</div>
               <div class="disp-value warn">{{ enMision }}</div>
@@ -217,6 +257,8 @@
                 <div class="disp-fill warn-fill" [style.width.%]="(enMision / equipos.length) * 100"></div>
               </div>
             </div>
+
+            <!-- Barra: equipos en reposo/recuperación -->
             <div class="disp-row">
               <div class="disp-label">En Reposo</div>
               <div class="disp-value dim">{{ enReposo }}</div>
@@ -229,11 +271,10 @@
         </div><!-- /col der -->
       </div><!-- /two-col -->
     </div><!-- /page-wrap -->
-
   </div><!-- /main-content -->
 </div><!-- /app-layout -->
 
-<!-- ── TOAST ── -->
+<!-- Notificación temporal de confirmación (se muestra 3.2s tras una acción) -->
 <div class="toast" [class.show]="toastVisible">
   <span>✅</span>
   <span>{{ toastMensaje }}</span>

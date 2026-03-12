@@ -1,11 +1,22 @@
+<!--
+  Sidebar — Componente de navegación lateral
+  Presente en todas las pantallas del sistema tras el login
+  Muestra el menú principal y los datos del usuario activo
+-->
+
+<!-- Navegación lateral principal -->
 <nav class="sidenav">
+
+  <!-- Logo e identificación del sistema -->
   <div class="sidenav-logo">
     <div class="logo-text">Orb<span>IT</span>al</div>
     <div class="logo-sub">Imperio de Freezer</div>
   </div>
 
+  <!-- Sección: Catálogo Planetario -->
   <div class="sidenav-section">
     <div class="sidenav-title">Catálogo Planetario</div>
+    <!-- exact:true evita que /planetas quede activo cuando se está en /planetas/registrar -->
     <a class="sidenav-item" routerLink="/planetas" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
       <span class="sidenav-icon">🪐</span>Listar Planetas
     </a>
@@ -16,6 +27,7 @@
 
   <div class="sidenav-divider"></div>
 
+  <!-- Sección: Equipos y Misiones -->
   <div class="sidenav-section">
     <div class="sidenav-title">Equipos y Misiones</div>
     <a class="sidenav-item" routerLink="/equipos/registrar" routerLinkActive="active">
@@ -31,6 +43,7 @@
 
   <div class="sidenav-divider"></div>
 
+  <!-- Sección: Administración (solo para administradores del Imperio) -->
   <div class="sidenav-section">
     <div class="sidenav-title">Administración</div>
     <a class="sidenav-item" routerLink="/registrar-usuario" routerLinkActive="active">
@@ -38,14 +51,19 @@
     </a>
   </div>
 
+  <!-- Panel inferior: datos del usuario activo y botón de cierre de sesión -->
+  <!-- Los datos se cargan desde localStorage en el ngOnInit del sidebar.ts -->
   <div class="sidenav-user">
     <div class="user-row">
+      <!-- Avatar con las iniciales del nombre del usuario (ej: "ZA" para Zarbon) -->
       <div class="avatar">{{ usuario.iniciales }}</div>
       <div>
         <div class="user-name">{{ usuario.nombre }}</div>
         <div class="user-role">{{ usuario.rol }}</div>
       </div>
     </div>
+    <!-- Limpia localStorage y redirige al login -->
     <button class="btn-logout" (click)="cerrarSesion()">⏻ Cerrar sesión</button>
   </div>
+
 </nav>

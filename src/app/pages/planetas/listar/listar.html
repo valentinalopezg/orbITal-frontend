@@ -3,11 +3,15 @@
   Como Comandante de Flota quiero consultar los planetas
   registrados para identificar posibles objetivos de misión
 -->
+
+<!-- Layout principal: sidebar izquierdo + contenido derecho -->
 <div class="app-layout">
   <app-sidebar></app-sidebar>
+
+  <!-- Área de contenido principal -->
   <div class="main-content">
 
-    <!-- STAT CARDS -->
+    <!-- STAT CARDS: resumen numérico del estado del catálogo -->
     <div class="stats-row">
       <div class="stat-card">
         <div class="stat-label">Total Planetas</div>
@@ -31,8 +35,9 @@
       </div>
     </div>
 
-    <!-- TOOLBAR -->
+    <!-- TOOLBAR: búsqueda, filtros y acciones principales -->
     <div class="toolbar">
+      <!-- Búsqueda por nombre, sector o recursos -->
       <div class="search-wrap">
         <span class="search-icon">🔍</span>
         <input
@@ -42,6 +47,7 @@
           [(ngModel)]="filtroTexto"
         >
       </div>
+      <!-- Filtro por estado del planeta -->
       <select class="filter-select" [(ngModel)]="filtroEstado">
         <option value="">Todos los estados</option>
         <option value="disponible">Disponible</option>
@@ -50,6 +56,7 @@
         <option value="evaluacion">En Evaluación</option>
         <option value="peligroso">Peligroso</option>
       </select>
+      <!-- Filtro por sector: se genera dinámicamente desde los datos -->
       <select class="filter-select" [(ngModel)]="filtroSector">
         <option value="">Todos los sectores</option>
         <option *ngFor="let s of sectoresUnicos" [value]="s">{{ s }}</option>
@@ -58,10 +65,11 @@
       <button class="btn btn-primary" (click)="abrirModal()">＋ Nuevo Planeta</button>
     </div>
 
-    <!-- TABLE -->
+    <!-- TABLE: listado completo del catálogo planetario -->
     <div class="table-wrap">
       <div class="table-header">
         <div class="table-header-title">Registro Planetario</div>
+        <!-- Contador reactivo: muestra cuántos resultados coinciden con el filtro -->
         <div class="table-count">Mostrando {{ planetasFiltrados.length }} de {{ planetas.length }} planetas</div>
       </div>
 
@@ -79,17 +87,22 @@
           </tr>
         </thead>
         <tbody>
+          <!-- Itera sobre los planetas que pasan los filtros activos -->
           <tr *ngFor="let p of planetasFiltrados">
             <td>
+              <!-- Punto de color identificador + nombre del planeta -->
               <div class="planet-name">
                 <div class="planet-dot" [style.background]="p.color"></div>
                 {{ p.nombre }}
               </div>
             </td>
             <td><span class="mono">{{ p.sector }} · {{ p.coordenadas }}</span></td>
+            <!-- Nivel tecnológico convertido a número romano (ej: 4 → IV) -->
             <td><span class="mono">{{ toRoman(p.nivelTec) }}</span></td>
             <td class="recursos-cell">{{ p.recursos }}</td>
             <td>
+              <!-- Barra de poder relativa al máximo del catálogo -->
+              <!-- Roja/naranja si supera 80k, azul/violeta si es menor -->
               <div class="power-bar-wrap">
                 <div class="power-bar">
                   <div
@@ -101,9 +114,11 @@
                 <span class="mono">{{ formatPoder(p.poderNativo) }}</span>
               </div>
             </td>
+            <!-- Valor estimado formateado en M o k (ej: 4500000 → 4.5M ₹) -->
             <td>
               <span class="mono valor">{{ formatValor(p.valorEstimado) }}</span>
             </td>
+            <!-- Badge de estado con clase y texto dinámicos -->
             <td>
               <span class="badge" [ngClass]="badgeEstado(p.estado)">
                 {{ labelEstado(p.estado) }}
@@ -112,6 +127,7 @@
             <td>
               <div class="actions-cell">
                 <button class="btn btn-sm btn-ghost">👁 Ver</button>
+                <!-- Botón deshabilitado si el planeta ya está en misión o fue vendido -->
                 <button
                   class="btn btn-sm btn-primary"
                   [disabled]="p.estado === 'en_mision' || p.estado === 'vendido'"
@@ -123,6 +139,7 @@
             </td>
           </tr>
 
+          <!-- Estado vacío: se muestra cuando ningún planeta coincide con el filtro -->
           <tr *ngIf="planetasFiltrados.length === 0">
             <td colspan="8" class="empty-state">
               <div>🪐</div>
@@ -132,6 +149,7 @@
         </tbody>
       </table>
 
+      <!-- Paginación (actualmente estática, página 1) -->
       <div class="pagination">
         <div class="page-info">{{ planetasFiltrados.length }} registros encontrados</div>
         <div class="page-btns">
@@ -145,7 +163,8 @@
   </div>
 </div>
 
-<!-- MODAL -->
+<!-- MODAL: formulario para registrar un nuevo planeta -->
+<!-- Se cierra al hacer clic fuera del contenido del modal -->
 <div class="modal-overlay" [class.open]="modalAbierto" (click)="$event.target === $event.currentTarget && cerrarModal()">
   <div class="modal">
     <div class="modal-header">
@@ -153,6 +172,7 @@
       <button class="modal-close" (click)="cerrarModal()">✕</button>
     </div>
     <div class="modal-body">
+      <!-- Nombre y sector en fila -->
       <div class="form-row">
         <div class="form-group">
           <label class="form-label">Nombre del Planeta *</label>
@@ -163,6 +183,7 @@
           <input class="form-input" type="text" placeholder="SEC-0A" [(ngModel)]="nuevoPlaneta.sector">
         </div>
       </div>
+      <!-- Coordenadas y nivel tecnológico en fila -->
       <div class="form-row">
         <div class="form-group">
           <label class="form-label">Coordenadas</label>
@@ -179,10 +200,12 @@
           </select>
         </div>
       </div>
+      <!-- Recursos identificados en el planeta -->
       <div class="form-group">
         <label class="form-label">Recursos Identificados</label>
         <input class="form-input" type="text" placeholder="Ej: Minerales Z, agua..." [(ngModel)]="nuevoPlaneta.recursos">
       </div>
+      <!-- Poder nativo y valor estimado en fila -->
       <div class="form-row">
         <div class="form-group">
           <label class="form-label">Poder Nativo Estimado</label>
@@ -201,7 +224,7 @@
   </div>
 </div>
 
-<!-- TOAST -->
+<!-- TOAST: notificación temporal de confirmación (visible 3.2s tras una acción) -->
 <div class="toast" [class.show]="toastVisible">
   <span>✅</span>
   <span>{{ toastMensaje }}</span>
