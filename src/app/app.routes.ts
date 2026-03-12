@@ -11,21 +11,25 @@ import { RegistroUsuario } from './pages/registro-usuario/registro-usuario';
 import { RegistrarPlaneta } from './pages/planetas/registrar/registrar';
 
 export const routes: Routes = [
-  // Si el usuario entra a la raíz "/" lo redirige automáticamente a "/login"
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-
-  // Ruta del login — muestra la pantalla Login cuando la URL es /login
-  { path: 'login', component: Login },
-
-  // Ruta de registro de usuario (solo admin)
-  { path: 'registrar-usuario', component: RegistroUsuario },
-  
-  // Ruta de registrar planeta
-  { path: 'planetas/registrar', component: RegistrarPlaneta },
-  // 🔧 PENDIENTE: agregar las demás rutas del MVP a medida que se implementen
-  // { path: 'planetas', component: Listar },
-  // { path: 'planetas/registrar', component: Registrar },
-  // { path: 'equipos/registrar', component: RegistrarEquipo },
-  // { path: 'misiones/asignar', component: Asignar },
-  // { path: 'misiones/:id', component: Estado },
+  {
+    path: '',
+    redirectTo: 'app/planetas/listar',
+    pathMatch: 'full'
+  },
+  {
+    path: 'app',
+    children: [
+      {
+        path: 'planetas/listar',
+        loadComponent: () =>
+          import('./pages/planetas/listar/listar').then(m => m.ListarComponent)
+      },
+      {
+        path: 'equipos/registrar',
+        loadComponent: () =>
+          import('./pages/equipos/registrar/registrar').then(m => m.RegistrarEquipoComponent)
+      },
+      { path: '**', redirectTo: 'app/planetas/listar' }
+    ]
+  }
 ];
