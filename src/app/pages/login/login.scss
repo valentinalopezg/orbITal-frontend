@@ -1,0 +1,73 @@
+/* 
+  Estilos específicos del Login
+  Los estilos globales (colores, fuentes, botones) están en src/styles.scss
+*/
+
+/* Asegura que el fondo cubra toda la pantalla */
+.login-wrap {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: 
+    linear-gradient(rgba(2,3,10,0.5), rgba(2,3,10,0.5)),
+    url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?w=1920') center/cover no-repeat;
+}
+
+/* Borde del cuadro del login */
+.login-card {
+  border-color: rgba(255, 255, 255, 0.08);
+
+
+  /* Freezer semitransparente detrás del formulario */
+&::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('https://i.pinimg.com/originals/96/21/30/96213086102f62c9114f240b493ec4a7.png') center 10% / cover no-repeat;
+  opacity: 0.1;
+  pointer-events: none;
+}
+}
+/* Línea decorativa al final del formulario */
+.login-divider {
+  text-align: center;
+  font-size: 10px;
+  color: var(--text2);
+  margin: 16px 0 0;
+  letter-spacing: 1px;
+}
+
+/* Fila que alinea el label "Contraseña" y el link "¿Olvidaste tu clave?" */
+.meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 7px;
+}
+
+/* Fila del checkbox con su label */
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+
+  input[type="checkbox"] {
+    width: 14px;
+    height: 14px;
+    accent-color: var(--accent); /* usa el color cyan del sistema */
+    cursor: pointer;
+  }
+}
+
+.checkbox-label {
+  font-size: 12px;
+  color: var(--text2);
+  cursor: pointer;
+}
+
+/* Apariencia del botón cuando está deshabilitado (mientras carga) */
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
