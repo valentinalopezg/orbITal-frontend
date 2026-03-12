@@ -415,3 +415,15 @@ body {
 .planet-info { padding: 14px; }
 .planet-name { font-family: 'Orbitron', monospace; font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
 .planet-meta { font-size: 11px; color: var(--text2); margin-bottom: 10px; }
+
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main-content {
+  margin-left: 220px;
+  flex: 1;
+  padding: 32px;
+  background: #02030a;
+}

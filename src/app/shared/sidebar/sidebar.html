@@ -1,1 +1,51 @@
-<p>sidebar works!</p>
+<nav class="sidenav">
+  <div class="sidenav-logo">
+    <div class="logo-text">Orb<span>IT</span>al</div>
+    <div class="logo-sub">Imperio de Freezer</div>
+  </div>
+
+  <div class="sidenav-section">
+    <div class="sidenav-title">Catálogo Planetario</div>
+    <a class="sidenav-item" routerLink="/planetas" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <span class="sidenav-icon">🪐</span>Listar Planetas
+    </a>
+    <a class="sidenav-item" routerLink="/planetas/registrar" routerLinkActive="active">
+      <span class="sidenav-icon">➕</span>Registrar Planeta
+    </a>
+  </div>
+
+  <div class="sidenav-divider"></div>
+
+  <div class="sidenav-section">
+    <div class="sidenav-title">Equipos y Misiones</div>
+    <a class="sidenav-item" routerLink="/equipos/registrar" routerLinkActive="active">
+      <span class="sidenav-icon">⚔️</span>Registrar Equipo
+    </a>
+    <a class="sidenav-item" routerLink="/misiones/asignar" routerLinkActive="active">
+      <span class="sidenav-icon">🚀</span>Asignar Misión
+    </a>
+    <a class="sidenav-item" routerLink="/misiones/estado" routerLinkActive="active">
+      <span class="sidenav-icon">📡</span>Estado de Misión
+    </a>
+  </div>
+
+  <div class="sidenav-divider"></div>
+
+  <div class="sidenav-section">
+    <div class="sidenav-title">Administración</div>
+    <a class="sidenav-item" routerLink="/registrar-usuario" routerLinkActive="active">
+      <span class="sidenav-icon">👤</span>Registro Usuario
+    </a>
+  </div>
+
+  <div class="sidenav-user">
+    <div class="user-row">
+      <div class="avatar">{{ usuario.iniciales }}</div>
+      <div>
+        <div class="user-name">{{ usuario.nombre }}</div>
+        <div class="user-role">{{ usuario.rol }}</div>
+      </div>
+    </div>
+    <button class="btn-logout" (click)="cerrarSesion()">⏻ Cerrar sesión</button>
+  </div>
+</nav>
