@@ -9,8 +9,8 @@ import { RegistroUsuario } from './pages/registro-usuario/registro-usuario';
 import { RegistrarPlaneta } from './pages/planetas/registrar/registrar';
 import { ListarComponent } from './pages/planetas/listar/listar';
 import { RegistrarEquipoComponent } from './pages/equipos/registrar/registrar';
-import { AsignarMision } from './misiones/asignar-mision/asignar-mision';
-import { EstadoMision } from './misiones/estado-mision/estado-mision';
+import { AsignarMision } from './pages/misiones/asignar/asignar';
+import { EstadoMision } from './pages/misiones/estado/estado';
 
 export const routes: Routes = [
   // Ruta raíz: redirige automáticamente al login

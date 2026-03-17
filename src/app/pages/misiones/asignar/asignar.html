@@ -1,1 +1,114 @@
-<p>asignar works!</p>
+<!--
+  Asignar Misión — HU6
+  Como Comandante de Flota quiero asignar un equipo a un
+  planeta para iniciar una misión de conquista
+-->
+<div class="app-layout">
+  <app-sidebar></app-sidebar>
+  <div class="main-content">
+
+    <!-- Encabezado de página -->
+    <div class="page-header">
+      <h1>Asignar Nueva Misión</h1>
+      <p>Emparejar planeta con equipo según nivel de poder requerido</p>
+    </div>
+
+    <!-- Indicador de pasos del wizard -->
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-circle done">✓</div>
+        <div class="step-text">Seleccionar Planeta</div>
+      </div>
+      <div class="step-item">
+        <div class="step-circle active">2</div>
+        <div class="step-text">Asignar Equipo</div>
+      </div>
+      <div class="step-item">
+        <div class="step-circle">3</div>
+        <div class="step-text">Confirmar Misión</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+
+      <!-- Panel izquierdo: datos del planeta y configuración -->
+      <div class="card">
+        <div class="section-title" style="margin-bottom:14px">Planeta Seleccionado</div>
+
+        <!-- Tarjeta resumen del planeta -->
+        <div style="background:var(--deep);border:1px solid var(--border2);border-radius:6px;padding:14px;margin-bottom:14px">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:8px">
+            <div>
+              <div style="font-family:'Orbitron',monospace;font-size:14px;font-weight:700;color:var(--white)">🪐 Namek</div>
+              <div style="font-size:11px;color:var(--text2);margin-top:2px">Sector 7G · -4.82, 11.34</div>
+            </div>
+            <span class="badge badge-warn">Dificultad Media</span>
+          </div>
+          <div style="display:flex;gap:14px;font-size:12px">
+            <div><span style="color:var(--text2)">Poder req:</span> <span style="color:var(--accent);font-weight:600">75,000+</span></div>
+            <div><span style="color:var(--text2)">Valor:</span> <span style="color:var(--success);font-weight:600">4,500,000 cr</span></div>
+          </div>
+        </div>
+
+        <!-- Configuración de la misión -->
+        <div class="form-group">
+          <label class="form-label">Prioridad</label>
+          <select class="form-select">
+            <option>Normal</option>
+            <option selected>Alta</option>
+            <option>Urgente</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Fecha límite</label>
+          <input class="form-input" value="2026-04-15">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Notas del Comandante</label>
+          <input class="form-input" placeholder="Instrucciones especiales...">
+        </div>
+      </div>
+
+      <!-- Panel derecho: selección de equipo -->
+      <div class="card">
+        <div class="section-title" style="margin-bottom:12px">Equipos Disponibles (poder ≥ 75,000)</div>
+
+        <div style="display:flex;flex-direction:column;gap:10px">
+
+          <!-- Equipo seleccionado -->
+          <div style="background:rgba(0,201,255,0.06);border:1px solid var(--accent);border-radius:6px;padding:13px;cursor:pointer">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
+              <span style="font-weight:600;color:var(--white)">Escuadrón Ginyu</span>
+              <span class="badge badge-success">Seleccionado</span>
+            </div>
+            <div style="display:flex;gap:12px;font-size:11px">
+              <span style="color:var(--text2)">Poder: <span style="color:var(--accent)">200,000</span></span>
+              <span style="color:var(--text2)">Misiones: <span style="color:var(--text)">23</span></span>
+              <span style="color:var(--text2)">Rep: <span style="color:var(--success)">★ 4.9</span></span>
+            </div>
+          </div>
+
+          <!-- Equipo disponible -->
+          <div style="background:var(--deep);border:1px solid var(--border);border-radius:6px;padding:13px;cursor:pointer">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
+              <span style="font-weight:600;color:var(--white)">Fuerza Saiyajin A</span>
+              <span class="badge badge-info">Disponible</span>
+            </div>
+            <div style="display:flex;gap:12px;font-size:11px">
+              <span style="color:var(--text2)">Poder: <span style="color:var(--accent)">90,000</span></span>
+              <span style="color:var(--text2)">Misiones: <span style="color:var(--text)">41</span></span>
+              <span style="color:var(--text2)">Rep: <span style="color:var(--success)">★ 4.7</span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botones de acción -->
+        <div style="display:flex;gap:10px;margin-top:16px">
+          <button class="btn btn-primary" routerLink="/misiones/estado">Confirmar Asignación →</button>
+          <button class="btn btn-secondary" routerLink="/planetas">← Volver</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
