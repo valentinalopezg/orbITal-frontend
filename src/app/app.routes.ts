@@ -9,27 +9,34 @@ import { RegistroUsuario } from './pages/registro-usuario/registro-usuario';
 import { RegistrarPlaneta } from './pages/planetas/registrar/registrar';
 import { ListarComponent } from './pages/planetas/listar/listar';
 import { RegistrarEquipoComponent } from './pages/equipos/registrar/registrar';
+import { AsignarMision } from './misiones/asignar-mision/asignar-mision';
+import { EstadoMision } from './misiones/estado-mision/estado-mision';
 
 export const routes: Routes = [
-  // Ruta raíz: redirige automáticamente al login al entrar a la app
+  // Ruta raíz: redirige automáticamente al login
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 
-  // Pantalla de inicio de sesión (HU1)
+  // Login (HU15)
   { path: 'login', component: Login },
 
-  // Pantalla de registro de nuevos usuarios — solo administradores (HU0)
+  // Registro de usuario
   { path: 'registrar-usuario', component: RegistroUsuario },
 
-  // Pantalla de registro de nuevo planeta en el catálogo (HU2b)
-  // ⚠ Debe ir ANTES de /planetas para que Angular no lo interprete como subruta
+  // ⚠ planetas/registrar ANTES de planetas para que Angular no lo confunda
   { path: 'planetas/registrar', component: RegistrarPlaneta },
 
-  // Pantalla de listado y consulta del catálogo planetario (HU2)
+  // Listar planetas (HU2)
   { path: 'planetas', component: ListarComponent },
 
-  // Pantalla de registro de equipos de combate (HU3)
+  // Registrar equipo (HU4)
   { path: 'equipos/registrar', component: RegistrarEquipoComponent },
 
-  // Ruta comodín: cualquier URL no reconocida redirige al login
+  // Asignar misión (HU6)
+  { path: 'misiones/asignar', component: AsignarMision },
+
+  // Estado de misión (HU8)
+  { path: 'misiones/estado', component: EstadoMision },
+
+  // Ruta comodín
   { path: '**', redirectTo: 'login' }
 ];

@@ -1,0 +1,87 @@
+<div class="screen active" id="s-monitoreo">
+  <div class="page-header" style="display:flex; justify-content:space-between; align-items:center;">
+    <div>
+      <h1>Centro de Monitoreo Galáctico</h1>
+      <p>22 misiones activas · Actualización cada 30 segundos</p>
+    </div>
+    <div style="display:flex; gap:10px;">
+      <span class="badge badge-info" style="display:flex; align-items:center; gap:5px;"><div class="live-dot"></div> En vivo</span>
+      <span class="badge badge-danger">🚨 ALERTAS (3)</span>
+    </div>
+  </div>
+
+  <div class="grid-4" style="margin-bottom:20px">
+    <div class="card border-accent">
+      <div style="font-size:10px; color:var(--text3); text-transform:uppercase;">Misiones Activas</div>
+      <div style="font-size:28px; font-weight:bold; margin:5px 0;">22</div>
+      <div style="font-size:10px; color:var(--success)">↑ 4 hoy</div>
+    </div>
+    <div class="card border-success">
+      <div style="font-size:10px; color:var(--text3); text-transform:uppercase;">Completadas (Ciclo)</div>
+      <div style="font-size:28px; font-weight:bold; margin:5px 0; color:var(--success)">8</div>
+    </div>
+    <div class="card border-danger">
+      <div style="font-size:10px; color:var(--text3); text-transform:uppercase;">Alertas Críticas</div>
+      <div style="font-size:28px; font-weight:bold; margin:5px 0; color:var(--danger)">3</div>
+      <div style="font-size:10px; color:var(--text3)">Requieren acción</div>
+    </div>
+    <div class="card border-warn">
+      <div style="font-size:10px; color:var(--text3); text-transform:uppercase;">Equipos Disponibles</div>
+      <div style="font-size:28px; font-weight:bold; margin:5px 0; color:var(--warn)">7</div>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:20px">
+    <div class="card" style="position:relative; background: rgba(13, 21, 48, 0.5); border: 1px solid var(--panel2);">
+      <div class="section-title"><span style="font-size:14px">🛰</span> Mapa Galáctico — Tiempo Real</div>
+      <div class="grid-overlay" style="height:250px; margin-top:15px; position:relative; background-image: radial-gradient(var(--panel2) 1px, transparent 1px); background-size: 20px 20px;">
+         <div class="map-point pulse-warn" style="top:40%; left:20%"><span class="map-label">NAMEK</span></div>
+         <div class="map-point pulse-accent" style="top:25%; left:45%"><span class="map-label">VEGETA</span></div>
+         <div class="map-point pulse-danger" style="top:70%; left:35%"><span class="map-label">YADRAT</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-title">📡 Lecturas Scouter - Alertas</div>
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px; margin-top:15px">
+        <div class="stat-box-neon">
+          <div style="font-size:24px; color:var(--accent); font-family:'Orbitron'">87,000</div>
+          <div style="font-size:9px; color:var(--text3)">NAMEK - GUERRERO #1</div>
+          <span class="badge badge-danger" style="font-size:8px">AMENAZA ALTA</span>
+        </div>
+        <div class="stat-box-neon">
+          <div style="font-size:24px; color:var(--success); font-family:'Orbitron'">5,200</div>
+          <div style="font-size:9px; color:var(--text3)">ARLIA - RESISTENCIA</div>
+          <span class="badge badge-success" style="font-size:8px">BAJO RIESGO</span>
+        </div>
+      </div>
+      <div style="margin-top:15px">
+        <div class="alert-row"><div class="dot-danger"></div> <span>Yardrat — Equipo en peligro. Acción requerida.</span></div>
+        <div class="alert-row"><div class="dot-warn"></div> <span>Namek — Nuevo guerrero detectado. Poder: 87,000.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title" style="margin-bottom:15px">Misiones Activas</div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>MISIÓN</th><th>PLANETA</th><th>EQUIPO</th><th>PROGRESO</th><th>AMENAZA</th><th>DÍAS REST.</th><th>ESTADO</th><th>ACCION</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="color:var(--accent)">M-2024-047</td>
+          <td>Namek</td>
+          <td>Esc. Ginyu</td>
+          <td><div class="progress-bar"><div class="progress-fill" style="width:68%"></div></div></td>
+          <td><span class="badge badge-warn">ALTO</span></td>
+          <td style="color:var(--warn)">18</td>
+          <td><span class="badge badge-warn">EN PROGRESO</span></td>
+          <td><button class="btn btn-sm btn-secondary" routerLink="/estado-mision">VER</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+/* Copia esto dentro de estado-mision.scss */
+.progress-bar {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00ffff, #7b5cf0) !important;
+  box-shadow: 0 0 10px #00ffff;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 30px;
+  &::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 20px;
+  &.active .timeline-dot {
+    background: #00ffff;
+    box-shadow: 0 0 10px #00ffff;
+  }
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -30px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #1a1f35;
+  border: 2px solid #00ffff;
+  z-index: 2;
+}
